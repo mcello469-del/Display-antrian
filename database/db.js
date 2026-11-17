@@ -109,10 +109,39 @@ function loadStatistics() {
     };
 }
 
+
+// Mereset seluruh data antrean
+function resetQueueData() {
+    db.exec("BEGIN TRANSACTION");
+
+    try {
+        // Menghapus seluruh riwayat
+        db.prepare(`
+            DELETE FROM queue_history
+        `).run();
+
+        // Mengembalikan kondisi antrean ke awal
+        db.prepare(`
+            UPDATE queue_state
+            SET last_number = 0,
+                current = NULL,
+                completed = NULL,
+                waiting = '[]'
+            WHERE id = 1
+        `).run();
+
+        db.exec("COMMIT");
+    } catch (error) {
+        db.exec("ROLLBACK");
+        throw error;
+    }
+}
+
 module.exports = {
     loadQueueData,
     saveQueueData,
     addHistory,
     loadHistory,
-    loadStatistics
+    loadStatistics,
+    resetQueueData
 };

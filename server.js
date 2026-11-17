@@ -10,7 +10,8 @@ const {
     saveQueueData,
     addHistory,
     loadHistory,
-    loadStatistics
+    loadStatistics,
+    resetQueueData
 } = require("./database/db");
 
 const app = express();
@@ -92,6 +93,36 @@ io.on("connection", (socket) => {
     socket.on("queue:repeat", () => {
         if (queueData.current) {
             io.emit("queue:repeat", queueData.current);
+        }
+    });
+
+
+    // Mereset seluruh antrean
+    socket.on("queue:reset", () => {
+        console.log("PERINTAH RESET DITERIMA DARI ADMIN");
+        try {
+            // Reset database
+            resetQueueData();
+
+            // Reset data antrean di server
+            queueData = {
+                lastNumber: 0,
+                current: null,
+                completed: null,
+                waiting: []
+            };
+
+            console.log("Seluruh antrean berhasil direset");
+
+            // Kirim kondisi antrean terbaru ke semua perangkat
+            broadcastQueue();
+
+            // Kirim riwayat kosong
+            io.emit("queue:history", loadHistory());
+
+        } catch (error) {
+            console.error("Gagal mereset antrean:", error);
+            socket.emit("queue:reset:error", "Reset antrean gagal.");
         }
     });
 

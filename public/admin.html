@@ -112,6 +112,52 @@
 
         </section>
 
+
+        <!-- RESET SELURUH ANTREAN -->
+        <section class="waiting-panel reset-panel">
+
+            <h3>Pengaturan Antrean</h3>
+
+            <p>
+                Hapus seluruh data antrean dan mulai kembali
+                dari nomor 001.
+            </p>
+
+            <button type="button" id="resetQueueBtn" class="btn-reset">
+                RESET SELURUH ANTREAN
+            </button>
+
+        </section>
+
+        <!-- DIALOG KONFIRMASI RESET -->
+        <dialog id="resetConfirmDialog">
+
+            <div class="reset-dialog-content">
+
+                <h2>Reset Seluruh Antrean?</h2>
+
+                <p>
+                    Semua riwayat, antrean aktif, dan antrean
+                    menunggu akan dihapus.
+                    Nomor antrean akan kembali ke 001.
+                </p>
+
+                <div class="reset-dialog-actions">
+
+                    <button type="button" id="cancelResetBtn">
+                        BATAL
+                    </button>
+
+                    <button type="button" id="confirmResetBtn">
+                        YA, RESET SEMUA
+                    </button>
+
+                </div>
+
+            </div>
+
+        </dialog>
+
         <footer class="admin-footer">
             <a href="display.html">Lihat Display Pelanggan</a>
         </footer>

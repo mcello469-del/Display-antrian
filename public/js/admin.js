@@ -216,3 +216,41 @@ function updateClock() {
 
 updateClock();
 setInterval(updateClock, 1000);
+
+
+// ===============================
+// RESET SELURUH ANTREAN
+// ===============================
+
+// Mengambil elemen tombol dan dialog
+const resetQueueBtn = document.getElementById("resetQueueBtn");
+const resetConfirmDialog = document.getElementById("resetConfirmDialog");
+const cancelResetBtn = document.getElementById("cancelResetBtn");
+const confirmResetBtn = document.getElementById("confirmResetBtn");
+
+// Membuka dialog konfirmasi
+resetQueueBtn.addEventListener("click", () => {
+    resetConfirmDialog.showModal();
+});
+
+// Membatalkan reset
+cancelResetBtn.addEventListener("click", () => {
+    resetConfirmDialog.close();
+});
+
+// Menjalankan reset setelah dikonfirmasi
+confirmResetBtn.addEventListener("click", () => {
+    if (!socket.connected) {
+        alert("Server belum terhubung!");
+        resetConfirmDialog.close();
+        return;
+    }
+
+    socket.emit("queue:reset");
+    resetConfirmDialog.close();
+});
+
+// Menerima pesan jika reset gagal
+socket.on("queue:reset:error", (message) => {
+    alert(message);
+});

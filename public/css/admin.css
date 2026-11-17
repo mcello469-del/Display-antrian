@@ -419,6 +419,96 @@ button:focus-visible {
     text-align: right;
 }
 
+
+/* =========================
+   RESET SELURUH ANTREAN
+========================= */
+
+.reset-panel {
+    border-color: var(--ink);
+    box-shadow: 8px 8px 0 var(--red);
+}
+
+.reset-panel p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.btn-reset {
+    background: var(--red);
+    color: var(--cream);
+    width: 100%;
+    max-width: 320px;
+}
+
+/* Dialog konfirmasi */
+
+#resetConfirmDialog {
+    width: min(90%, 460px);
+    margin: auto;
+    padding: 0;
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+#resetConfirmDialog::backdrop {
+    background: rgba(23, 18, 16, 0.7);
+}
+
+.reset-dialog-content {
+    padding: 28px;
+}
+
+.reset-dialog-content h2 {
+    font-family: var(--font-heavy);
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 14px;
+}
+
+.reset-dialog-content p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.reset-dialog-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.reset-dialog-actions button {
+    flex: 1;
+    font-size: 13px;
+    padding: 13px 10px;
+}
+
+#cancelResetBtn {
+    background: var(--cream);
+    color: var(--ink);
+}
+
+#confirmResetBtn {
+    background: var(--red);
+    color: var(--cream);
+}
+
+@media (max-width: 450px) {
+    .reset-dialog-content {
+        padding: 22px;
+    }
+
+    .reset-dialog-actions {
+        flex-direction: column;
+    }
+}
+
 /* =========================
    FOOTER
 ========================= */
