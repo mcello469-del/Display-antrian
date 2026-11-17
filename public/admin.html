@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Display Antrian</title>
+    <link rel="icon" type="image/png" href="assets/image.png">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <main class="admin-container">
+
+        <header class="admin-header">
+            <div>
+                <h1>OLLIE DRIP</h1>
+                <p>QUEUE MANAGEMENT SYSTEM</p>
+            </div>
+
+            <div class="admin-clock" id="clock">
+                00:00:00
+            </div>
+        </header>
+
+        <section class="welcome">
+            <h2>Panel Operator</h2>
+            <p>Kelola antrean pelanggan dengan mudah.</p>
+        </section>
+
+        <section class="statistics-panel">
+
+            <div class="stat-card">
+                <p>TOTAL ANTREAN DIBUAT</p>
+                <h2 id="totalCreated">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>TOTAL ANTREAN SELESAI</p>
+                <h2 id="totalCompleted">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>SEDANG MENUNGGU</p>
+                <h2 id="totalWaiting">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>SEDANG DIPROSES</p>
+                <h2 id="totalProcessing">0</h2>
+            </div>
+
+        </section>
+
+        <section class="dashboard">
+
+            <div class="queue-panel">
+
+                <p class="panel-label">NOMOR SEDANG DIPROSES</p>
+
+                <h2 id="currentNumber">---</h2>
+
+                <p class="queue-status">BELUM ADA ANTREAN</p>
+
+                <div class="action-buttons">
+                    <button class="btn-call">
+                        PANGGIL BERIKUTNYA
+                    </button>
+
+                    <button class="btn-repeat">
+                        PANGGIL ULANG
+                    </button>
+
+                    <button class="btn-finish">
+                        SELESAIKAN
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="new-queue-panel">
+
+                <p class="panel-label">BUAT ANTREAN BARU</p>
+
+                <h2 id="newNumber">001</h2>
+
+                <button class="btn-create">
+                    + BUAT NOMOR ANTREAN
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="waiting-panel">
+
+            <h3>Daftar Antrean Menunggu</h3>
+
+            <div class="waiting-list">
+                <p>Belum ada antrean yang menunggu.</p>
+            </div>
+
+        </section>
+
+        <section class="waiting-panel history-panel">
+
+            <h3>Riwayat Antrean Selesai</h3>
+
+            <div class="history-list">
+                <p>Belum ada riwayat antrean.</p>
+            </div>
+
+        </section>
+
+        <footer class="admin-footer">
+            <a href="display.html">Lihat Display Pelanggan</a>
+        </footer>
+
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

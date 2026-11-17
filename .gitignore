@@ -1,0 +1,17 @@
+
+# Dependencies
+node_modules/
+
+# Database lokal
+database/*.db
+
+# Environment variables
+.env
+.env.*
+
+# Cloudflare temporary files
+.wrangler/
+
+# System files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Display Antrian</title>
+
+    <link rel="icon" type="image/png" href="assets/ollie-drip-logo.png">
+    <link rel="icon" type="image/png" href="assets/image.png">
+    <link rel="stylesheet" href="css/display.css">
+</head>
+
+<body>
+
+    <main class="display-container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="brand">
+                <span class="brand-icon"><img src="assets/image.png" alt="Ollie Drip"></span>
+                <div>
+                    <h1>OLLIE DRIP</h1>
+                    <p>SKATE · SIP · REPEAT</p>
+                </div>
+            </div>
+
+            <div class="clock">
+                <span id="clock">00:00:00</span>
+            </div>
+        </header>
+
+        <!-- KONTEN UTAMA -->
+        <section class="main-content">
+
+            <div class="current-queue">
+                <p class="section-label" id="currentLabel">
+                    NOMOR SEDANG DISIAPKAN
+                </p>
+
+                <h2 id="currentNumber">001</h2>
+
+                <div class="status">
+                    SEDANG DISIAPKAN
+                </div>
+
+                <p class="queue-message" id="queueMessage">
+                    Mohon menunggu sebentar
+                </p>
+            </div>
+
+            
+            <div class="completed-queue">
+
+                <div class="completed-card">
+                    <p class="section-label">
+                        ANTRIAN SEBELUMNYA
+                    </p>
+
+                    <h2 id="completedNumber">-</h2>
+
+                    <span>Pesanan telah selesai</span>
+                </div>
+
+                <div class="next-card">
+                    <p class="section-label">
+                        ANTRIAN DISIAPKAN
+                    </p>
+
+                    <h2 id="nextNumber">-</h2>
+
+                    <span>Mohon menunggu giliran</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>TERIMA KASIH TELAH MENUNGGU</p>
+            <span>PLEASE WAIT FOR YOUR NUMBER</span>
+
+            <button type="button" id="enableSound" class="sound-button" title="Aktifkan suara">
+                🔊
+            </button>
+        </footer>
+
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/display.js"></script>
+
+</body>
+</html>

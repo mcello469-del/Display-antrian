@@ -1,0 +1,586 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Black&family=Sedgwick+Ave+Display&family=Permanent+Marker&display=swap');
+
+/* =========================================================
+   OLLIE DRIP — layar utama (display)
+   Lokasi: public/css/display.css
+   Logo   : public/assets/ollie-drip-logo.png
+========================================================= */
+
+:root {
+    --paper: #f1e7d4;
+    --card: #fffaf0;
+    --cream: #fff8e7;
+    --ink: #171210;
+    --ink-soft: #5c5046;
+
+    --red: #bd1342;
+    --cyan: #4dc4d6;
+
+    --logo: url('../assets/ollie-drip-logo.png');
+
+    --font-body: 'Archivo', 'Segoe UI', Arial, sans-serif;
+    --font-heavy: 'Archivo Black', Impact, 'Arial Black', sans-serif;
+    --font-tag: 'Sedgwick Ave Display', 'Permanent Marker', 'Segoe Print', 'Comic Sans MS', cursive;
+}
+
+/* =========================
+   GLOBAL SETTINGS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--paper);
+    background-image: radial-gradient(rgba(23, 18, 16, 0.08) 1.5px, transparent 1.6px);
+    background-size: 18px 18px;
+    color: var(--ink);
+    min-height: 100vh;
+    font-variant-numeric: tabular-nums;
+}
+
+.display-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px 56px 36px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 18px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Logo stiker. Kalau yang dipakai masih emoji, emoji disembunyikan dan diganti logo. */
+.brand-icon {
+    display: block;
+    width: 88px;
+    height: 88px;
+    flex-shrink: 0;
+    font-size: 0;
+    color: transparent;
+    background: var(--logo) center / contain no-repeat;
+}
+
+.brand-icon:has(img) {
+    background: none;
+}
+
+.brand-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.brand h1 {
+    font-family: var(--font-heavy);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+}
+
+.brand p {
+    color: var(--ink-soft);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    margin-top: 8px;
+}
+
+.clock {
+    font-family: var(--font-heavy);
+    font-size: 34px;
+    color: var(--ink);
+    border-left: 3px solid var(--ink);
+    padding: 4px 0 4px 24px;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+    padding: 36px 14px 36px 0;
+}
+
+/* CURRENT QUEUE — raspberry penuh, angka krem dengan bayangan hitam */
+
+.current-queue {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--red);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.14) 1.5px, transparent 1.6px);
+    background-size: 14px 14px;
+    color: var(--cream);
+    border: 3px solid var(--ink);
+    border-radius: 14px;
+    box-shadow: 14px 14px 0 var(--ink);
+    padding: 40px 28px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Logo samar di pojok kanan bawah — di belakang angka, tidak mengganggu */
+.current-queue::after {
+    content: "";
+    position: absolute;
+    right: -3%;
+    bottom: -9%;
+    width: 46%;
+    aspect-ratio: 520 / 630;
+    background: var(--logo) center / contain no-repeat;
+    opacity: 0.2;
+    transform: rotate(-6deg);
+    pointer-events: none;
+}
+
+.current-queue > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Label kecil di semua kartu */
+.section-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+}
+
+.current-queue .section-label {
+    order: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+}
+
+/* Titik "live" berkedip */
+.current-queue .section-label::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: live-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.2; }
+}
+
+/* Status tampil sebagai judul bertulisan tangan di atas angka */
+.status {
+    order: 2;
+    font-family: var(--font-tag);
+    font-size: clamp(30px, 4.6vh, 52px);
+    line-height: 1.1;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-top: 18px;
+}
+
+.current-queue h2 {
+    order: 3;
+    font-family: var(--font-heavy);
+    font-weight: 400;
+    font-size: clamp(120px, min(24vw, 38vh), 340px);
+    line-height: 1;
+    margin: 6px 0 26px;
+    color: var(--cream);
+    text-shadow: 0.045em 0.045em 0 var(--ink);
+}
+
+.queue-message {
+    order: 4;
+    width: min(100%, 640px);
+    border-top: 2px solid rgba(255, 248, 231, 0.45);
+    padding-top: 22px;
+    color: var(--cream);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Pesanan selesai: panel berubah cyan supaya jelas beda dari "sedang disiapkan" */
+
+.current-queue {
+    transition: background-color 0.4s ease;
+}
+
+.current-queue[data-state="ready"] {
+    background-color: var(--cyan);
+    background-image: radial-gradient(rgba(23, 18, 16, 0.12) 1.5px, transparent 1.6px);
+    color: var(--ink);
+}
+
+.current-queue[data-state="ready"] .section-label,
+.current-queue[data-state="ready"] .status,
+.current-queue[data-state="ready"] .queue-message {
+    color: var(--ink);
+}
+
+.current-queue[data-state="ready"] .section-label::before {
+    background: var(--red);
+}
+
+.current-queue[data-state="ready"] .queue-message {
+    border-top-color: rgba(23, 18, 16, 0.4);
+}
+
+.current-queue[data-state="ready"] h2 {
+    color: var(--ink);
+    text-shadow: 0.045em 0.045em 0 var(--cream);
+}
+
+/* Belum ada pesanan: angka dibuat redup */
+.current-queue[data-state="idle"] h2 {
+    opacity: 0.55;
+}
+
+/* Animasi saat angka berganti */
+@keyframes pop-in {
+    0%   { transform: scale(0.82); opacity: 0.25; }
+    55%  { transform: scale(1.07); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.pop {
+    animation: pop-in 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+}
+
+/* =========================
+   COMPLETED & NEXT QUEUE
+========================= */
+
+.completed-queue {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.completed-card,
+.next-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid var(--ink);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+}
+
+/* Berikutnya tampil di atas: hitam, angka krem, bayangan cyan seperti rambut di logo */
+.next-card {
+    order: -1;
+    background: var(--ink);
+    box-shadow: 10px 10px 0 var(--cyan);
+}
+
+.next-card .section-label {
+    color: var(--cyan);
+}
+
+/* Selesai: krem, angka hitam, bayangan hitam */
+.completed-card {
+    background: var(--card);
+    box-shadow: 10px 10px 0 var(--ink);
+}
+
+.completed-card .section-label {
+    color: var(--ink-soft);
+}
+
+.completed-card h2,
+.next-card h2 {
+    font-family: var(--font-heavy);
+    font-weight: 400;
+    font-size: clamp(64px, 12vh, 130px);
+    line-height: 1;
+    margin: 14px 0;
+}
+
+.completed-card h2 {
+    color: var(--ink);
+}
+
+.next-card h2 {
+    color: var(--cream);
+}
+
+.completed-card span,
+.next-card span {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.completed-card span {
+    color: var(--ink-soft);
+}
+
+.next-card span {
+    color: var(--cream);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    border-top: 3px solid var(--ink);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer p {
+    font-family: var(--font-heavy);
+    font-size: 16px;
+    letter-spacing: 0.04em;
+}
+
+.footer span {
+    display: block;
+    font-family: var(--font-tag);
+    color: var(--red);
+    font-size: 20px;
+    margin-top: 6px;
+}
+
+/* =========================
+   SOUND BUTTON
+========================= */
+
+.sound-button {
+    position: fixed;
+    top: auto;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1000;
+
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--red);
+    color: var(--cream);
+
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    box-shadow: 4px 4px 0 var(--ink);
+
+    font-size: 22px;
+    cursor: pointer;
+
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+/* Suara belum aktif: cincin berdenyut mengajak untuk ditekan */
+.sound-button:not(.is-on)::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 3px solid var(--red);
+    animation: sound-ring 1.6s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes sound-ring {
+    0%   { transform: scale(0.9); opacity: 0.9; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Suara aktif */
+.sound-button.is-on {
+    background: var(--cyan);
+    color: var(--ink);
+}
+
+.sound-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+}
+
+.sound-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--ink);
+}
+
+.sound-button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 4px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .completed-queue {
+        flex-direction: row;
+        gap: 28px;
+    }
+
+    .current-queue h2 {
+        font-size: clamp(110px, 30vw, 240px);
+    }
+
+    .current-queue::after {
+        width: 38%;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .display-container {
+        padding: 18px 18px 28px;
+    }
+
+    .header {
+        gap: 12px;
+        padding-bottom: 14px;
+    }
+
+    .brand {
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 58px;
+        height: 58px;
+    }
+
+    .brand h1 {
+        font-size: 20px;
+    }
+
+    .brand p {
+        font-size: 9px;
+        letter-spacing: 0.16em;
+        margin-top: 5px;
+    }
+
+    .clock {
+        font-size: 18px;
+        padding: 2px 0 2px 12px;
+        border-left-width: 2px;
+    }
+
+    .main-content {
+        padding: 26px 8px 26px 0;
+        gap: 26px;
+    }
+
+    .current-queue {
+        padding: 30px 16px;
+        box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .current-queue .section-label {
+        font-size: 12px;
+        letter-spacing: 0.16em;
+    }
+
+    .status {
+        font-size: 26px;
+    }
+
+    .queue-message {
+        font-size: 17px;
+        padding-top: 16px;
+    }
+
+    .completed-queue {
+        gap: 20px;
+    }
+
+    /* beri ruang agar tombol suara tidak menimpa teks footer */
+    .footer {
+        padding-bottom: 72px;
+    }
+
+    .completed-card,
+    .next-card {
+        padding: 18px 10px;
+    }
+
+    .section-label {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+    }
+
+    .completed-card {
+        box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .next-card {
+        box-shadow: 6px 6px 0 var(--cyan);
+    }
+
+    .completed-card h2,
+    .next-card h2 {
+        font-size: 50px;
+    }
+
+    .completed-card span,
+    .next-card span {
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .current-queue,
+    .sound-button {
+        transition: none;
+    }
+
+    .current-queue .section-label::before,
+    .sound-button::after,
+    .pop {
+        animation: none;
+    }
+}
